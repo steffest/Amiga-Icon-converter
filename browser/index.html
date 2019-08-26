@@ -1,0 +1,141 @@
+<html>
+<head>
+
+    <script src="../lib/zlib.js"></script>
+    <script src="../lib/file.js"></script>
+    <script src="../icon.js"></script>
+   
+    
+    <script>
+        var icons = [
+			"OS1.3/Disk.info",
+			"OS1.3/Prefs.info",
+        	"alpha/System.info",
+        	"alpha/Games.info",
+        	"MUI/Disk.info",
+        	"MUI/HD.info",
+        	"MUI/drawer.info",
+			"OS3/Disk.info",
+			"OS3/Orange.info",
+			"OS3/Blue.info",
+			"OS3/green.info",
+			"ColorIcons/System_drawer.info",
+			"ColorIcons/AmigaMail.info",
+			"ColorIcons/Screen.info",
+			"ColorIcons/screen2.info",
+			"ColorIcons/disk.info",
+			"Newicons/Apps.info",
+			"Newicons/0016.info",
+        	"OS4/drawer.info",
+			"OS4/install.info",
+        	"OS4/Aladdin4D.info"
+        ];
+        
+        var currentFolder = "";
+        
+        loadIcon(0);
+        
+        function loadIcon(index){
+        	var url = icons[index];
+			loadFile("../test-icons/" + url,function(data){
+				var file = BinaryStream(data,true);
+				var isIcon = Icon.detect(file);
+				if (isIcon){
+					var icon = Icon.parse(file,true);
+					var canvas = Icon.getImage(icon,0);
+					var canvas2 = Icon.getImage(icon,1);
+					showIcon(url,canvas,canvas2);
+				}else{
+					console.error("file " + url + " doesn't seem to be an icon file");
+				}
+				
+				if (index<icons.length-1) loadIcon(++index);
+			});
+        }
+        
+		function showIcon(name,canvas,canvas2){
+        	var parts = name.split("/");
+        	if (parts[0] !== currentFolder){
+				currentFolder = parts[0];
+        		var title = document.createElement("h1");
+        		title.innerHTML = currentFolder;
+        		document.body.appendChild(title);
+            }
+        	name = parts[1];
+			var elm = document.createElement("div");
+			elm.className = "iconbox";
+			elm.innerHTML = "<h2>" + name + "</h2>";
+
+			var unselected =  document.createElement("div");
+			unselected.className = "box";
+			unselected.innerHTML = "<h3>Unselected</h3>";
+			unselected.appendChild(canvas);
+			elm.appendChild(unselected);
+
+			if (canvas2){
+				var selected =  document.createElement("div");
+				selected.className = "box";
+				selected.innerHTML = "<h3>Selected</h3>";
+				selected.appendChild(canvas2);
+				elm.appendChild(selected);
+            }
+            
+			document.body.appendChild(elm);
+            
+           
+		}
+		
+		function setBackground(value){
+        	value = Math.floor(value * 2.55);
+        	document.body.style.backgroundColor = "rgb(" + value + "," + value + "," + value + ")";
+        }
+        
+        
+    </script>
+
+    <style>
+        body{
+            background-color: silver;
+            font-family: sans-serif;
+            font-size: 12px;
+        }
+        .box{
+            padding: 10px;
+            display: inline-block;
+        }
+        
+        .iconbox{
+            display: inline-block;
+            vertical-align: top;
+            margin: 4px;
+            border: 1px solid #949494;
+        }
+        
+        h1{
+            padding: 2px;
+            font-size: 12px;
+            margin: 0;
+            font-weight: normal;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+            text-transform: capitalize;
+        }
+        
+        h2,h3{
+            font-size: 12px;
+            padding: 2px 0;
+            margin: 0;
+            font-weight: normal;
+        }
+        
+        h2{
+            background-color: rgba(128, 128, 128, 0.3);
+            padding: 4px;
+        }
+        
+    </style>
+</head>
+<body>
+    Background: <input type="range" oninput="setBackground(this.value)" value="70">
+</body>
+</html>

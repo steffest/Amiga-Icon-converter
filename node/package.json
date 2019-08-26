@@ -1,0 +1,18 @@
+{
+  "name": "amiga-icon",
+  "version": "1.0.0",
+  "description": "parse, decode and convert Amiga Icons to PNG and/or Canvas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Amiga",
+    "Icon"
+  ],
+  "author": "Steffest",
+  "license": "MIT",
+  "dependencies": {
+    "pngjs": "^3.4.0"
+  }
+}

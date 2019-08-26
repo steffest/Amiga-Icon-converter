@@ -11,4 +11,8 @@ Example project for both environments are included
 
 This library is also part of the [ADF toolbox](https://github.com/steffest/ADF-reader-writer)
 
+Example: loading and displaying Amiga .info files in a browser.
+
+[screenshot]: screenshots/browser.png
+
 
