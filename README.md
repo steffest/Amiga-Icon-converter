@@ -13,6 +13,17 @@ This library is also part of the [ADF toolbox](https://github.com/steffest/ADF-r
 
 Example: loading and displaying Amiga .info files in a browser.
 
-[screenshot]: screenshots/browser.png
+## Example 1: 
+Converting a batch of .info files to PNG in node
+
+![screenshot 1](./screenshots/node.png?raw=true)
+
+## Example 2: 
+loading and displaying Amiga .info files in a browser.
+
+![screenshot 2](./screenshots/browser.png?raw=true)
+
+
+
 
 
