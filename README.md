@@ -1,7 +1,7 @@
 # Amiga Icon converter
 Display, convert and generate Amiga Icons in plain JavaScript
 
-All Amiga icon formats are supported except NewIcons, including OS4 trueColor transparent ones.
+All Amiga icon formats are supported; Classic OS, Classic OS2, NewIcons, ColorIcons(GlowIcons), Dual PNG and OS4 trueColor transparent ones.
 
 The main library works both in the browser as in node.  
 In the browser icons get rendered to canvas.  

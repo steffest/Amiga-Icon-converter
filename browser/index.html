@@ -41,10 +41,12 @@
 				var file = BinaryStream(data,true);
 				var isIcon = Icon.detect(file);
 				if (isIcon){
-					var icon = Icon.parse(file,true);
-					var canvas = Icon.getImage(icon,0);
-					var canvas2 = Icon.getImage(icon,1);
-					showIcon(url,canvas,canvas2);
+					Icon.parse(file,icon=>{
+                        var canvas = Icon.getImage(icon,0);
+                        var canvas2 = Icon.getImage(icon,1);
+                        showIcon(url,canvas,canvas2);
+                    });
+
 				}else{
 					console.error("file " + url + " doesn't seem to be an icon file");
 				}

@@ -49,26 +49,27 @@ function processFile(path){
 			var isIcon = Icon.detect(file);
 			if (isIcon){
 				console.log("converting icon");
-				var icon = Icon.parse(file,true);
-				var png = icon2Png(icon,0);
-				
-				if (png){
-					var pngName = filename.split(".info").join("_0.png");
-					png.pack().pipe(fs.createWriteStream(outPath + "/" + dirname + "_" + pngName))
-						.on('finish', function() {
-							console.log(pngName + ' saved');
-						});
-				}
+				Icon.parse(file,icon=>{
+					var png = icon2Png(icon,0);
 
-				var png2 = icon2Png(icon,1);
+					if (png){
+						var pngName = filename.split(".info").join("_0.png");
+						png.pack().pipe(fs.createWriteStream(outPath + "/" + dirname + "_" + pngName))
+							.on('finish', function() {
+								console.log(pngName + ' saved');
+							});
+					}
 
-				if (png2){
-					var pngName2 = filename.split(".info").join("_1.png");
-					png2.pack().pipe(fs.createWriteStream(outPath + "/" + dirname + "_" + pngName2))
-						.on('finish', function() {
-							console.log(pngName2 + ' saved');
-						});
-				}
+					var png2 = icon2Png(icon,1);
+
+					if (png2){
+						var pngName2 = filename.split(".info").join("_1.png");
+						png2.pack().pipe(fs.createWriteStream(outPath + "/" + dirname + "_" + pngName2))
+							.on('finish', function() {
+								console.log(pngName2 + ' saved');
+							});
+					}
+				});
 			}else{
 				console.log("no valid icon");
 			}
