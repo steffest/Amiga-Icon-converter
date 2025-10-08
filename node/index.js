@@ -58,6 +58,8 @@ function processFile(path){
 							.on('finish', function() {
 								console.log(pngName + ' saved');
 							});
+					}else{
+						console.log("no valid png");
 					}
 
 					var png2 = icon2Png(icon,1);
@@ -73,6 +75,8 @@ function processFile(path){
 			}else{
 				console.log("no valid icon");
 			}
+		}else{
+			console.log("error reading file");
 		}
 	});
 
@@ -86,10 +90,11 @@ function processFile(path){
 function icon2Png(icon,stateIndex){
 
 	stateIndex = stateIndex || 0;
-	if (icon.colorIcon){
-		var w = icon.colorIcon.width;
-		var h = icon.colorIcon.height;
-		var state = icon.colorIcon.states[stateIndex];
+	let iconData =  icon.colorIcon || icon.newIcon;
+	if (iconData){
+		var w = iconData.width;
+		var h = iconData.height;
+		var state = iconData.states[stateIndex];
 
 		if (state){
 			var png = new PNG({width:w,height:h});
