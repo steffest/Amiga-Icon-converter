@@ -147,6 +147,7 @@ function icon2Png(icon,stateIndex){
 				png.data[idx + 3] = Math.ceil(color[3] * 255);
 			}
 		}
+		return png;
 	}
 }
 
